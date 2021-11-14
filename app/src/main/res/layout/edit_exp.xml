@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editExpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editExpStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:ems="10"
+        android:hint="Starting date"
+        android:inputType="none"
+        android:onClick="handleDatePicking"
+        app:layout_constraintStart_toStartOf="@+id/editExpTitle"
+        app:layout_constraintTop_toBottomOf="@+id/editExpTitle" />
+
+    <!--
+    Name: SHASHWAT DOSHI
+    Date: Jun 8 2018
+    License: CC BY-SA 4.0
+    From: https://stackoverflow.com/a/50759109/12471420
+    Usage: adding simple line divider
+    -->
+    <View
+        android:id="@+id/view4"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/editExpNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editExpStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/editExpStartDate" />
+
+    <EditText
+        android:id="@+id/editExpNotes"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Experiment descriptions"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editExpStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/editExpStartDate" />
+
+
+    <ImageView
+        android:id="@+id/editYesButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="auto"
+        android:onClick="plusSuccess"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editExpNotes"
+        app:srcCompat="@drawable/checked" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/successDecrement"
+        app:layout_constraintEnd_toStartOf="@+id/editNoButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editYesButton"
+        app:layout_constraintTop_toBottomOf="@+id/editExpNotes" />
+
+    <ImageView
+        android:id="@+id/editNoButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="auto"
+        android:onClick="plusFail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/editYesButton"
+        app:srcCompat="@mipmap/multi_foreground" />
+
+    <TextView
+        android:id="@+id/editSuccessCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="#"
+        android:textAlignment="gravity"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/successDecrement"
+        app:layout_constraintStart_toStartOf="@+id/editYesButton"
+        app:layout_constraintTop_toBottomOf="@+id/editYesButton" />
+
+    <TextView
+        android:id="@+id/editFailCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="#"
+        android:textAlignment="gravity"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/failureDecrement"
+        app:layout_constraintStart_toStartOf="@+id/editNoButton"
+        app:layout_constraintTop_toBottomOf="@+id/editNoButton" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/successDecrement" />
+
+    <TextView
+        android:id="@+id/editSuccessPercent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="# %  Success"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+
+    <!--
+    Name: Ranjith Kumar
+    Date: July 30 2019
+    License: CC BY-SA 4.0
+    From : https://stackoverflow.com/a/57265990/12471420
+    usage:  button with border-->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editDeleteButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="delete"
+
+        android:text="Delete"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:cornerRadius="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editSaveButton2"
+        app:layout_constraintTop_toTopOf="@+id/editSaveButton2"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editSaveButton2"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:onClick="save"
+        android:text="Save"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editDeleteButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTotal"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/successDecrement"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:onClick="minusSuccess"
+        android:text="-1"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editSuccessCount"
+        app:layout_constraintEnd_toEndOf="@+id/editYesButton"
+        app:layout_constraintTop_toTopOf="@+id/editSuccessCount"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/failureDecrement"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:onClick="minusFail"
+        android:text="-1"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editFailCount"
+        app:layout_constraintEnd_toEndOf="@+id/editNoButton"
+        app:layout_constraintTop_toTopOf="@+id/editFailCount"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/editTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="# Total"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editSuccessPercent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
